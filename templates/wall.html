@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Your Wall</title>
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="topnav" class="topnav animated headroom headroom--pinned fadeInDown">
+            <h1 class="inlineblock">Your Wall</h1>
+            <h3 class="inlineblock paddingleft">Welcome, {{session['name']}}</h3>
+            <form action="/log_out" method="post">
+                <input class="btn btn-primary" type="submit" value="Log out">
+            </form>
+        </div>
+
+        <div class="panel panel-body">
+            <h3>Send Messages:</h3>
+            {% for user in users_on_template %}
+                {% if user['id'] != sessionuserid %}
+                <p class="bg-success inlineblock">{{user["first_name"]}} {{user["last_name"]}}</p>
+                <form action="/send_message" method="post">
+                    <input type="hidden" name="recipient" value="{{user['id']}}">
+                    <input type="text" name="message_text">
+                    <input class="btn btn-primary" type="submit" value="Send">
+                </form>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+        <div class="panel panel-body">
+            <h3>Your Messages:</h3>
+            {% if messages_on_template != False %}
+            {% for message in messages_on_template %}
+                <h4 class="bg-success inlineblock">{{message['author_name']}} {{message["created_at"]}} :  {{message["content"]}}</h4>
+                <form action="/delete_message" method="post">
+                    <input type="hidden" name="message_to_delete" value="{{message['id']}}">
+                    <input id="trashcan" type="image" border="0" />
+                </form>
+                <br>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+    </body>
+</html>

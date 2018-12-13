@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    padding: 25px;
+    margin: auto;
+    margin-top: 25px;
+}
+.automargins{
+    margin: auto;
+}
+.inlineblock{
+    display: inline;
+    text-align: center;
+    vertical-align: middle;
+    line-height: normal;
+    padding: none;
+}
+.block{
+    margin: 25px;
+    padding: 25px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.paddingleft{
+    margin: 5px;
+    margin-left: 200px;
+}
+.space{
+    display: inline;
+}
+.scrollbox{
+    overflow-y: scroll;
+    display: block;
+    margin: auto;
+    height: 200px;
+    width: 850px;
+}
+#trashcan{
+    background: none;
+    background-image: url("delete.png");
+    background-color: transparent;
+    background-position: center;
+    background-size: contain;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    line-height: normal;
+    border:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

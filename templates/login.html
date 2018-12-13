@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Login and Registration</title>
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="panel panel-heading">
+            <h1 class="panel panel-heading">Registration</h1>
+        </div>
+        <div class="panel panel-heading">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for messages in messages %}
+                        <p class="bg-danger">{{messages}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="panel panel-body">
+            <form action="/register" method="post">
+                <p>First Name: <input class="form-control" type="text" name="fname"></p>
+                <p>Last Name: <input class="form-control" type="text" name="lname"></p>
+                <p>Email: <input class="form-control" type="text" name="email"></p>
+                <p>Password: <input class="form-control" type="password" name="password"></p>
+                <p>Password Confirm: <input class="form-control" type="password" name="confirmpassword"></p>
+                <input class="btn btn-primary" type="submit" value="Create Account">
+            </form>
+        </div>
+
+        <div class="panel panel-heading">
+            <h1 class="panel panel-heading">Login</h1>
+        </div>
+        <div class="panel panel-body">
+            <form action="/login" method="post">
+                <p class="bg-info">Email: <input class="form-control" type="text" name="email"></p>
+                <p class="bg-info">Password: <input class="form-control" type="password" name="password"></p>
+                <input class="btn btn-primary" type="submit" value="Login">
+            </form>
+        </div>
+
+    </body>
+</html>
